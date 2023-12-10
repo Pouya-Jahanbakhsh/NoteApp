@@ -11,7 +11,7 @@ function NoteStatus() {
   if (!allNotes)
     return (
       <Message>
-        ℹ️ <span>No Notes has already been added.</span> <span>🧐</span>
+        <span>No Notes has already been added!</span>
       </Message>
     );
 
