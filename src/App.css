@@ -50,7 +50,7 @@
 
 .note-item {
   padding: 1rem;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 0.75rem;
   margin-bottom: 1.5rem;
 }
@@ -92,7 +92,7 @@
 }
 
 .note-item__header .trash {
-  width: 1.5rem;
+  width: 1.5rem; 
   height: 1.5rem;
   color: var(--rose-500);
   background: none;
@@ -101,3 +101,26 @@
 .note-item__footer {
   color: var(--text-300);
 }
+
+/* Responsive screen size */
+
+
+/* for mobiles */
+@media screen and (max-width: 767px) {
+  .note-header{
+    flex-direction: column;
+    font-size: 14px;
+  }
+  .note-app{
+    flex-direction: column;
+    align-items: center;
+  }
+  .add-new-note{
+    width: 85%;
+  }
+  .note-container {
+    width: 100%;
+  }
+  
+}
+
