@@ -1,37 +1,37 @@
 import React, { useState } from "react"
 
 
-export default function AddNewNote({onAddNote}) {
+export default function AddNewNote({ onAddNote }) {
 
-const [title , setTitle] = useState("") //controlled input must be something (dont use : useState() or useState(null);)
-const [description , setDescription] = useState("") //controlled input must be something (dont use : useState() or useState(null);)
-const handleSubmit = (e) =>{
+  const [title, setTitle] = useState("") //controlled input must be something (dont use : useState() or useState(null);)
+  const [description, setDescription] = useState("") //controlled input must be something (dont use : useState() or useState(null);)
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!title || !description) return;
 
     const newNote = {
-        title, //key = value => just write ones(title : title)
-        description, //key = value => just write ones(description : description)
-        id : Date.now(),
-        completed : false,
-        createdAt: new Date().toISOString(), 
+      title, //key = value => just write ones(title : title)
+      description, //key = value => just write ones(description : description)
+      id: Date.now(),
+      completed: false,
+      createdAt: new Date().toISOString(),
     };
     onAddNote(newNote);
     setTitle("");
     setDescription("");
-}
+  }
 
 
 
   return (
     <div className="add-new-note">
-        <h2>Add New Note</h2>
-        <form className="note-form" onSubmit={handleSubmit}>
-            <input value={title} onChange={(e)=>setTitle(e.target.value)} type="text" className="text-field" placeholder="Note title..." />
-            <input value={description} onChange={(e)=>setDescription(e.target.value)} type="text" className="text-field" placeholder="Note description..." />
-            <button type="submit" className="btn btn--primary">Add New Note</button>
+      <h2>Add New Note</h2>
+      <form className="note-form" onSubmit={handleSubmit}>
+        <input value={title} onChange={(e) => setTitle(e.target.value)} type="text" className="text-field" placeholder="Note title..." />
+        <input value={description} onChange={(e) => setDescription(e.target.value)} type="text" className="text-field" placeholder="Note description..." />
+        <button type="submit" className="btn btn--primary">Add New Note</button>
 
-        </form>
+      </form>
     </div>
   )
 }
