@@ -1,10 +1,10 @@
 import React from 'react';
 
-function NoteList({ notes }) {
+function NoteList({ notes , onDelete }) {
   return (
     <div className="note-list">
         {notes.map((note) =>(
-            <NoteItem key={note.id} note={note} />
+            <NoteItem key={note.id} note={note} onDelete = {onDelete} />
         ))}
     </div>
   );
@@ -12,7 +12,7 @@ function NoteList({ notes }) {
 
 export default NoteList;
 
-function NoteItem({note}){
+function NoteItem({ note , onDelete }){
 
 const options = {
     year:"numeric",
@@ -28,7 +28,7 @@ const options = {
                     <p className="desc">{note.description}</p>
                 </div>
                 <div className="actions">
-                    <button><i className="fa fa-trash-o" style={{fontSize:'21px',color:'red'}}></i></button>
+                    <button onClick = { () => onDelete(note.id) } ><i className="fa fa-trash-o" style={{fontSize:'21px',color:'red'}}></i></button>
                     <input type="checkbox" />
                 </div>
             </div>
