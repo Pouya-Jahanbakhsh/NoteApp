@@ -1,27 +1,13 @@
-import { useReducer, useState } from "react";
-import "./App.css";
-import AddNewNote from "./components/AddNewNote";
-import NoteList from "./components/NoteList";
-import NoteStatus from "./components/NoteStatus";
-import NoteHeader from "./components/NoteHeader";
-import { NotesProvider } from "./context/NotesContext";
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
 
 function App() {
-  const [sortBy, setSortBy] = useState("latest");
+
   return (
-    <NotesProvider>
-      <div className="container">
-        <NoteHeader sortBy={sortBy} onSort={(e) => setSortBy(e.target.value)} />
-        <div className="note-app">
-          <AddNewNote />
-          <div className="note-container">
-            <NoteStatus />
-            <NoteList sortBy={sortBy} />
-          </div>
-        </div>
-      </div>
-    </NotesProvider>
-  );
+    <h1>Hello Note App</h1>
+  )
 }
 
-export default App;
+export default App
