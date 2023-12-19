@@ -1,12 +1,14 @@
 import React, { useState } from "react"
 
 
-export default function AddNewNote() {
+export default function AddNewNote({onAddNote}) {
 
 const [title , setTitle] = useState("") //controlled input must be something (dont use : useState() or useState(null);)
 const [description , setDescription] = useState("") //controlled input must be something (dont use : useState() or useState(null);)
 const handleSubmit = (e) =>{
     e.preventDefault();
+    if (!title || !description) return;
+
     const newNote = {
         title, //key = value => just write ones(title : title)
         description, //key = value => just write ones(description : description)
@@ -14,6 +16,7 @@ const handleSubmit = (e) =>{
         completed : false,
         createdAt: new Date().toISOString(), 
     };
+    onAddNote(newNote);
     setTitle("");
     setDescription("");
 }
