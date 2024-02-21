@@ -1,10 +1,22 @@
 import React from 'react';
 
-function NoteList({ notes, onDelete , onComplete }) {
+function NoteList({ notes, onDelete, onComplete, sortBy }) {
+
+    let sortedNotes = notes;
+    if (sortBy === "earliest")
+        sortedNotes = [...notes].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    //[...notes] is a full copy of notes array
+
+    if (sortBy === "latest")
+        sortedNotes = [...notes].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+    if (sortBy === "completed")
+        sortedNotes = [...notes].sort((a, b) => Number(b.completed) - Number(a.completed));
+
     return (
         <div className="note-list">
-            {notes.map((note) => (
-                <NoteItem key={note.id} note={note} onDelete={onDelete} onComplete = {onComplete} />
+            {sortedNotes.map((note) => (
+                <NoteItem key={note.id} note={note} onDelete={onDelete} onComplete={onComplete} />
             ))}
         </div>
     );
@@ -12,7 +24,7 @@ function NoteList({ notes, onDelete , onComplete }) {
 
 export default NoteList;
 
-function NoteItem({ note, onDelete , onComplete }) {
+function NoteItem({ note, onDelete, onComplete }) {
 
     const options = {
         year: "numeric",
@@ -21,7 +33,7 @@ function NoteItem({ note, onDelete , onComplete }) {
     };
 
     return (
-        <div className={`note-item ${note.completed ? "completed":""}`}>
+        <div className={`note-item ${note.completed ? "completed" : ""}`}>
             <div className="note-item__header">
                 <div>
                     <p className="title">{note.title}</p>
@@ -29,7 +41,7 @@ function NoteItem({ note, onDelete , onComplete }) {
                 </div>
                 <div className="actions">
                     <button
-                     onClick={() => onDelete(note.id)} >
+                        onClick={() => onDelete(note.id)} >
                         <i className="fa fa-trash-o" style={{ fontSize: '21px', color: 'red' }}></i>
                     </button>
                     <input
@@ -38,7 +50,7 @@ function NoteItem({ note, onDelete , onComplete }) {
                         id={note.id}
                         onChange={onComplete}
                         checked={note.completed}
-                     />
+                    />
                 </div>
             </div>
             <div className="note-item__footer">
